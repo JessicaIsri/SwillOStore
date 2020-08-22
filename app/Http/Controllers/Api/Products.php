@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Products as Model;
 
 class Products extends Controller
 {
@@ -14,17 +15,19 @@ class Products extends Controller
      */
     public function index()
     {
-        //
+        return json_encode('Its alive');
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request body of request
+     * @return void
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = $request->all();
+        return json_encode($data);
     }
 
     /**
@@ -35,7 +38,10 @@ class Products extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $model = new Model;
+        return json_encode($model->validateNCreated($data)[1]);
     }
 
     /**
